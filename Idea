@@ -1,0 +1,8 @@
+1. Decode BP string → list of {item_id, lat, long, rotation, recipe}
+2. For each building:
+   a. Determine which band it's in (on the source radius)
+   b. Compute its fractional position within that band (0–1)
+   c. Find the corresponding band on the target radius
+   d. Map fractional position → new lat/long on target grid
+   e. Snap to valid grid cell
+3. Re-encode with correct MD5F hash → new BP string
