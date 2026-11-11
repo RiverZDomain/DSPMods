@@ -1,0 +1,9 @@
+{
+  "name": "blueprintscalermod",
+  "version_number": "0.1.0",
+  "website_url": "https://github.com/Franzavi/BlueprintScalerMod",
+  "description": "Adds a source-scale selector to the blueprint placement inspector; blueprint geometry scaling is not implemented yet.",
+  "dependencies": [
+    "xiaoye97-BepInEx-5.4.17"
+  ]
+}

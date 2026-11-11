@@ -1,0 +1,67 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>BlueprintScalerMod</AssemblyName>
+    <RootNamespace>BlueprintScalerMod</RootNamespace>
+    <Version>0.1.0</Version>
+    <DSPGameDir Condition="'$(DSPGameDir)' == ''">$(HOME)/.local/share/Steam/steamapps/common/Dyson Sphere Program</DSPGameDir>
+    <DSPManagedDir Condition="'$(DSPManagedDir)' == ''">$(DSPGameDir)/DSPGAME_Data/Managed</DSPManagedDir>
+    <BepInExDir Condition="'$(BepInExDir)' == ''">$(DSPGameDir)/BepInEx/core</BepInExDir>
+    <PackageStagingDir>$(MSBuildProjectDirectory)/obj/thunderstore</PackageStagingDir>
+    <PackageArchive>$(MSBuildProjectDirectory)/artifacts/BlueprintScalerMod-$(Version).zip</PackageArchive>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(DSPManagedDir)/Assembly-CSharp.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(DSPManagedDir)/UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(DSPManagedDir)/UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>$(DSPManagedDir)/UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>$(DSPManagedDir)/UnityEngine.UI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>$(DSPManagedDir)/UnityEngine.UIModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>$(DSPManagedDir)/UnityEngine.TextRenderingModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="BepInEx">
+      <HintPath>$(BepInExDir)/BepInEx.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="ValidateModReferences" BeforeTargets="ResolveReferences">
+    <Error Condition="!Exists('$(DSPManagedDir)/Assembly-CSharp.dll')" Text="DSP Assembly-CSharp.dll not found. Set DSPGameDir or DSPManagedDir to your game installation." />
+    <Error Condition="!Exists('$(BepInExDir)/BepInEx.dll')" Text="BepInEx.dll not found. Install BepInEx 5 or set BepInExDir to its core directory." />
+  </Target>
+
+  <Target Name="PackageThunderstore" AfterTargets="Build">
+    <RemoveDir Directories="$(PackageStagingDir)" />
+    <MakeDir Directories="$(PackageStagingDir)/BepInEx/plugins/BlueprintScalerMod;$(MSBuildProjectDirectory)/artifacts" />
+    <Copy SourceFiles="$(MSBuildProjectDirectory)/package/manifest.json;$(MSBuildProjectDirectory)/package/README.md;$(MSBuildProjectDirectory)/package/icon.png" DestinationFolder="$(PackageStagingDir)" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(PackageStagingDir)/BepInEx/plugins/BlueprintScalerMod" />
+    <ZipDirectory SourceDirectory="$(PackageStagingDir)" DestinationFile="$(PackageArchive)" Overwrite="true" />
+    <Message Importance="high" Text="Thunderstore package created: $(PackageArchive)" />
+  </Target>
+</Project>
