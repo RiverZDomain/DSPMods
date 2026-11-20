@@ -15,5 +15,17 @@ Affects all miners: vein miners, water pumps, and oil extractors.
 
 ## Installation
 
+### Manual
+
 1. Install [BepInEx 5](https://github.com/BepInEx/BepInEx/releases) into your game folder
 2. Drop the DLL into `BepInEx/plugins`
+
+### R2ModMan
+
+1. Install [r2modman](https://thunderstore.io/c/dyson-sphere-program/p/ebkr/r2modman/) and select Dyson Sphere Program as your game
+2. Go to **Online**, search for "Output Randomizer", and click **Download with dependencies**
+3. Launch with **Start Modded**
+
+---
+
+Developed with AI assistance.

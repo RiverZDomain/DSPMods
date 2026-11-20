@@ -12,7 +12,7 @@ namespace OutputRandomizer
     {
         public const string PluginGuid = "com.francisco.dsp.outputrandomizer";
         public const string PluginName = "Output Randomizer";
-        public const string PluginVersion = "0.1.0";
+        public const string PluginVersion = "1.0.0";
 
         internal static BepInEx.Logging.ManualLogSource ModLogger { get; private set; }
         internal static BepInEx.Configuration.ConfigEntry<bool> DefaultEnabled { get; private set; }
