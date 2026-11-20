@@ -1,0 +1,9 @@
+{
+  "name": "advanced-miner-logistics-fix",
+  "version_number": "0.1.0",
+  "website_url": "",
+  "description": "Clears stale collector logistics orders when Advanced Miner output items change.",
+  "dependencies": [
+    "xiaoye97-BepInEx-5.4.17"
+  ]
+}

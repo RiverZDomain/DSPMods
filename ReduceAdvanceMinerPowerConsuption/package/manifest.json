@@ -1,0 +1,9 @@
+{
+  "name": "advanced-miner-linear-power",
+  "version_number": "0.1.0",
+  "website_url": "https://github.com/Franzavi/BlueprintScalerMod",
+  "description": "Makes advanced vein collector power use scale linearly with mining speed.",
+  "dependencies": [
+    "xiaoye97-BepInEx-5.4.17"
+  ]
+}

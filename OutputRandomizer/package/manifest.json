@@ -1,0 +1,9 @@
+{
+  "name": "output-randomizer",
+  "version_number": "0.1.0",
+  "website_url": "",
+  "description": "Randomizes the item output of miners.",
+  "dependencies": [
+    "xiaoye97-BepInEx-5.4.17"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "name": "distribute-spray-mk3",
+  "version_number": "1.0.4",
+  "website_url": "https://github.com/Valoneu/DysonSphereMods/tree/main/src/DistributeSpray",
+  "description": "Personal-use MK3 modification of Valoneu's DistributeSpray; unofficial and not affiliated with or endorsed by Valoneu.",
+  "dependencies": [
+    "xiaoye97-BepInEx-5.4.17"
+  ]
+}
