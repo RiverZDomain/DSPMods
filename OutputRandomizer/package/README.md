@@ -11,7 +11,7 @@ On the **New Game** screen, a **Randomizer** panel appears below the metadata ta
 
 Settings are saved per save file. The filter requires at least one item selected.
 
-Affects all miners: vein miners, water pumps, and oil extractors.
+Affects all miners:  Mining Machine, Advance Mining Machine, Water Pumps, and Oil Extractors.
 
 ## Installation
 
