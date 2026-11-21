@@ -12,7 +12,7 @@ namespace OutputRandomizer
     {
         public const string PluginGuid = "com.francisco.dsp.outputrandomizer";
         public const string PluginName = "Output Randomizer";
-        public const string PluginVersion = "1.0.0";
+        public const string PluginVersion = "1.1.0";
 
         internal static BepInEx.Logging.ManualLogSource ModLogger { get; private set; }
         internal static BepInEx.Configuration.ConfigEntry<bool> DefaultEnabled { get; private set; }
@@ -257,7 +257,8 @@ namespace OutputRandomizer
                     if (miner.id == station.minerId)
                     {
                         CollectorMiners.Add(GetMinerKey(factoryIndex, miner.entityId));
-                        EnforceDepotMode(station, factory);
+                        if (RandomizerSaveState.Enabled)
+                            EnforceDepotMode(station, factory);
                     }
                 }
             }
@@ -289,6 +290,32 @@ namespace OutputRandomizer
                 if (slot.remoteLogic != ELogisticStorage.None)
                 {
                     slot.remoteLogic = ELogisticStorage.None;
+                    changed = true;
+                }
+            }
+
+            if (changed)
+            {
+                station.UpdateNeeds();
+                factory?.transport?.RefreshStationTraffic(station.id);
+            }
+        }
+
+        private static void RestoreProviderMode(StationComponent station, PlanetFactory factory)
+        {
+            bool changed = false;
+            lock (station.storage)
+            {
+                ref StationStore slot = ref station.storage[0];
+                if (slot.localLogic != ELogisticStorage.Supply)
+                {
+                    slot.localLogic = ELogisticStorage.Supply;
+                    changed = true;
+                }
+
+                if (slot.remoteLogic != ELogisticStorage.Supply)
+                {
+                    slot.remoteLogic = ELogisticStorage.Supply;
                     changed = true;
                 }
             }

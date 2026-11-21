@@ -4,7 +4,7 @@
     <LangVersion>latest</LangVersion>
     <AssemblyName>OutputRandomizer</AssemblyName>
     <RootNamespace>OutputRandomizer</RootNamespace>
-    <Version>1.0.0</Version>
+    <Version>1.1.0</Version>
     <DSPGameDir Condition="'$(DSPGameDir)' == ''">$(HOME)/.local/share/Steam/steamapps/common/Dyson Sphere Program</DSPGameDir>
     <DSPManagedDir Condition="'$(DSPManagedDir)' == ''">$(DSPGameDir)/DSPGAME_Data/Managed</DSPManagedDir>
     <BepInExDir Condition="'$(BepInExDir)' == ''">$(DSPGameDir)/BepInEx/core</BepInExDir>
@@ -60,7 +60,7 @@
   <Target Name="PackageThunderstore" AfterTargets="Build">
     <RemoveDir Directories="$(PackageStagingDir)" />
     <MakeDir Directories="$(PackageStagingDir)/BepInEx/plugins/OutputRandomizer;$(MSBuildProjectDirectory)/artifacts" />
-    <Copy SourceFiles="$(MSBuildProjectDirectory)/package/manifest.json;$(MSBuildProjectDirectory)/package/README.md;$(MSBuildProjectDirectory)/package/icon.png" DestinationFolder="$(PackageStagingDir)" />
+    <Copy SourceFiles="$(MSBuildProjectDirectory)/package/manifest.json;$(MSBuildProjectDirectory)/package/README.md;$(MSBuildProjectDirectory)/package/icon.png;$(MSBuildProjectDirectory)/package/CHANGELOG.md" DestinationFolder="$(PackageStagingDir)" />
     <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(PackageStagingDir)/BepInEx/plugins/OutputRandomizer" />
     <ZipDirectory SourceDirectory="$(PackageStagingDir)" DestinationFile="$(PackageArchive)" Overwrite="true" />
     <Message Importance="high" Text="Thunderstore package created: $(PackageArchive)" />
